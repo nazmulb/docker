@@ -1,9 +1,4 @@
-FROM ubuntu:12.04
+FROM nazmulb/apache2
 MAINTAINER Nazmul Basher "nazmul.basher@gmail.com"
-RUN apt-get update
-RUN apt-get install -y nginx
-RUN echo 'Hi, I am your container' >/usr/share/nginx/www/index.html
-ENV REFRESHED_AT 2017-10-12
-EXPOSE 80
-ENTRYPOINT ["nginx"]
-CMD ["-g", "daemon off;"]
+ENV APPLICATION_NAME webapp
+ENV ENVIRONMENT development
