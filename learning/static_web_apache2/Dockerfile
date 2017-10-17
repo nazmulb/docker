@@ -1,5 +1,6 @@
 FROM ubuntu:12.04
 MAINTAINER Nazmul Basher "nazmul.basher@gmail.com"
+ENV REFRESHED_AT 2017-10-12
 RUN apt-get update
 RUN apt-get install -y apache2
 ENV APACHE_RUN_USER www-data
