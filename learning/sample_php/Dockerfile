@@ -5,7 +5,7 @@ FROM ubuntu:16.04
 RUN apt-get update
  
 # Install nginx, php-fpm and supervisord from ubuntu repository
-RUN apt-get install -y nginx php7.0-fpm supervisor && \
+RUN apt-get install -y nginx php7.0-fpm php7.0-mysql supervisor && \
     rm -rf /var/lib/apt/lists/*
  
 #Define the ENV variable
