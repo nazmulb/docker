@@ -3,7 +3,7 @@
 ### Create Mysql container
 
 ```
-docker run -d --name nazmul_mysql -e MYSQL_ROOT_PASSWORD=123 -v $PWD/website/data:/var/lib/mysql mysql:5.6
+docker run -d -p 3308:3306 --name nazmul_mysql -e MYSQL_ROOT_PASSWORD=123 -v $PWD/website/data:/var/lib/mysql mysql:5.6
 ```
 
 ### To add database table
