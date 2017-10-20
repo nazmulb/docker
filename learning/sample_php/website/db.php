@@ -12,7 +12,7 @@ try {
 		die("Connection failed: " . $conn->connect_error);
 	} 
 
-	echo "Connected successfully";
+	echo "Connected successfully <br />";
 } catch (PDOException $e) {
 	echo $e->getMessage();
 }
