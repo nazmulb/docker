@@ -1,32 +1,25 @@
-FROM ubuntu:16.04
-ENV MYSQL_ROOT_PASSWORD 123
+FROM ubuntu:trusty-20170620
 
-RUN dpkg-divert --local --rename --add /sbin/initctl
-RUN ln -nfs /bin/true /sbin/initctl
+RUN echo 'APT::Install-Recommends 0;' >> /etc/apt/apt.conf.d/01norecommends \
+ && echo 'APT::Install-Suggests 0;' >> /etc/apt/apt.conf.d/01norecommends \
+ && apt-get update \
+ && DEBIAN_FRONTEND=noninteractive apt-get install -y vim.tiny wget sudo net-tools ca-certificates unzip apt-transport-https \
+ && rm -rf /var/lib/apt/lists/*
 
-#RUN echo "deb http://archive.ubuntu.com/ubuntu precise main universe" > /etc/apt/sources.list
-#RUN apt-get update
-#RUN apt-get upgrade -y
+ENV MYSQL_USER=mysql \
+    MYSQL_DATA_DIR=/var/lib/mysql \
+    MYSQL_RUN_DIR=/run/mysqld \
+    MYSQL_LOG_DIR=/var/log/mysql
 
-#RUN apt-get -y install perl-base perl-modules perl
-#RUN apt-get -yqq install mysql-server mysql-client
+RUN apt-get update \
+ && DEBIAN_FRONTEND=noninteractive apt-get install -y mysql-server \
+ && rm -rf ${MYSQL_DATA_DIR} \
+ && rm -rf /var/lib/apt/lists/*
 
-RUN apt-get update \ 
-    && apt-get install -y debconf-utils \
-    && echo mysql-server mysql-server/root_password password $MYSQL_ROOT_PASSWORD | debconf-set-selections \
-    && echo mysql-server mysql-server/root_password_again password $MYSQL_ROOT_PASSWORD | debconf-set-selections \
-    && apt-get install -y mysql-server -o pkg::Options::="--force-confdef" -o pkg::Options::="--force-confold" --fix-missing \
-    && apt-get install -y net-tools --fix-missing \
-    && apt-get install -y mysql-client \
-    && rm -rf /var/lib/apt/lists/*
+COPY entrypoint.sh /sbin/entrypoint.sh
+RUN chmod 755 /sbin/entrypoint.sh
 
-RUN sed -i -e"s/^bind-address\s*=\s*127.0.0.1/bind-address = 0.0.0.0/" /etc/mysql/my.cnf
-
-ADD ./startup.sh /opt/startup.sh
-
-# Volume configuration
-VOLUME ["/var/lib/mysql"]
-
-EXPOSE 3306
-
-CMD ["/bin/bash", "/opt/startup.sh"]
+EXPOSE 3306/tcp
+VOLUME ["${MYSQL_DATA_DIR}", "${MYSQL_RUN_DIR}"]
+ENTRYPOINT ["/sbin/entrypoint.sh"]
+CMD ["/usr/bin/mysqld_safe"]
