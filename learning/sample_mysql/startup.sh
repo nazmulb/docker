@@ -2,7 +2,7 @@
 
 if [ ! -f /var/lib/mysql/ibdata1 ]; then
 
-	mysqld --initialize
+	mysql_install_db
 
 	/usr/bin/mysqld_safe &
 	sleep 10s
