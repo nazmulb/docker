@@ -14,3 +14,12 @@ Containerization is increasingly popular because containers are:
 - **Stackable:** You can stack services vertically and on-the-fly.
 
 <img alt="Docker container" src="https://raw.githubusercontent.com/nazmulb/docker/master/container.png" height="300px" />
+
+### Docker components:
+
+Let’s look at the core components that compose Docker:
+
+    The Docker client and server, also called the Docker Engine
+    Docker Images
+    Registries
+    Docker Containers
