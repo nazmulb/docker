@@ -19,7 +19,7 @@ Containerization is increasingly popular because containers are:
 
 ##### Docker Engine: Docker is a client-server application. The Docker client talks to the Docker server or daemon, which, in turn, does all the work. the Docker daemon called the Docker Engine. Docker ships with a command line client binary, docker, as well as a full RESTful API to interact with the daemon. You can run the Docker daemon and client on the same host or connect your local Docker client to a remote daemon running on another host. You can see Docker’s architecture depicted here:
 
-<img alt="Docker architecture" src="https://raw.githubusercontent.com/nazmulb/docker/master/docker-architecture.png" height="295px" />
+<img alt="Docker architecture" src="https://raw.githubusercontent.com/nazmulb/docker/master/docker-architecture.png" height="300px" />
 
 ##### Docker images: Images are the building blocks of the Docker world. You launch your containers from images. Images are the ”build” part of Docker’s life cycle. They are a layered format, using Union file systems, that are built step-by-step using a series of instructions. For example:
 
@@ -46,4 +46,4 @@ Docker also doesn’t care where you ship your container: you can build on your 
 
 With Docker, we can quickly build an application server, a message bus, a utility appliance, a CI test bed for an application, or one of a thousand other possible applications, services, and tools. It can build local, self-contained test environments or replicate complex application stacks for production or development purposes.
 
-<img alt="How docker works" src="https://raw.githubusercontent.com/nazmulb/docker/master/how-docker-works.png" height="300px" />
+<img alt="How docker works" src="https://raw.githubusercontent.com/nazmulb/docker/master/how-docker-works.png" height="350px" />
