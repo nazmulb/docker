@@ -17,11 +17,13 @@ Containerization is increasingly popular because containers are:
 
 ### Docker components:
 
-##### Docker Engine: Docker is a client-server application. The Docker client talks to the Docker server or daemon, which, in turn, does all the work. the Docker daemon called the Docker Engine. Docker ships with a command line client binary, docker, as well as a full RESTful API to interact with the daemon. You can run the Docker daemon and client on the same host or connect your local Docker client to a remote daemon running on another host. You can see Docker’s architecture depicted here:
+##### Docker Engine: 
+Docker is a client-server application. The Docker client talks to the Docker server or daemon, which, in turn, does all the work. the Docker daemon called the Docker Engine. Docker ships with a command line client binary, docker, as well as a full RESTful API to interact with the daemon. You can run the Docker daemon and client on the same host or connect your local Docker client to a remote daemon running on another host. You can see Docker’s architecture depicted here:
 
 <img alt="Docker architecture" src="https://raw.githubusercontent.com/nazmulb/docker/master/docker-architecture1.png" height="350px" />
 
-##### Docker images: Images are the building blocks of the Docker world. You launch your containers from images. Images are the ”build” part of Docker’s life cycle. They are a layered format, using Union file systems, that are built step-by-step using a series of instructions. For example:
+##### Docker images: 
+Images are the building blocks of the Docker world. You launch your containers from images. Images are the ”build” part of Docker’s life cycle. They are a layered format, using Union file systems, that are built step-by-step using a series of instructions. For example:
 
 - Add a file.
 - Run a command. 
@@ -29,9 +31,11 @@ Containerization is increasingly popular because containers are:
 
 You can consider images to be the ”source code” for your containers. They are highly portable and can be shared, stored, and updated.
 
-##### Registries: Docker stores the images you build in registries. There are two types of registries: public and private. Docker, Inc., operates the public registry for images, called the Docker Hub. You can create an account on the <a href="https://hub.docker.com/">Docker Hub</a> and use it to share and store your own images.
+##### Registries: 
+Docker stores the images you build in registries. There are two types of registries: public and private. Docker, Inc., operates the public registry for images, called the Docker Hub. You can create an account on the <a href="https://hub.docker.com/">Docker Hub</a> and use it to share and store your own images.
 
-##### Containers: Docker helps you build and deploy containers inside of which you can package your applications and services. Containers are launched from images and can contain one or more running processes. You can think about images as the building or packing aspect of Docker and the containers as the running or execution aspect of Docker.
+##### Containers: 
+Docker helps you build and deploy containers inside of which you can package your applications and services. Containers are launched from images and can contain one or more running processes. You can think about images as the building or packing aspect of Docker and the containers as the running or execution aspect of Docker.
 
 A Docker container is:
 - An image format.
