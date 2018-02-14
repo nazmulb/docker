@@ -78,3 +78,23 @@ With Docker, we can quickly build an application server, a message bus, a utilit
 - Providing lightweight stand-alone sandbox environments for developing, testing, and teaching technologies, such as the Unix shell or a programming language.
 - Software as a Service applications.
 - Highly performant, hyperscale deployments of hosts.
+
+### Install Docker:
+
+Please <a href="https://docs.docker.com/install/">use this doc</a> to install docker. After successful installation, let’s check that the docker binary exists and is functional:
+
+```js
+docker info
+```
+
+### Working with Docker container:
+
+#### Running our first container:
+
+```js
+docker run --name nazmul_first_container -i -t ubuntu bash
+```
+
+- --name assign a name to the container
+- -i keeps STDIN (standard input) open from the container that we need for an interactive shell
+- -t allocate a pseudo-TTY which provides an interactive shell in the new container
