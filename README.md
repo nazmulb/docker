@@ -57,6 +57,24 @@ With Docker, we can quickly build an application server, a message bus, a utilit
 #### Pros:
 
 - **An easy and lightweight way to model reality:** Docker is fast. You can Dockerize your application in minutes. Docker relies on a copy-on-write model so that making changes to your application is also incredibly fast: only what you want to change gets changed. Most Docker containers take less than a second to launch. Containers are highly performant and you can pack more of them into your hosts and make the best possible use of your resources.
-- **A logical segregation of duties:** With Docker, Developers care about their applications running inside containers, and Operations cares about managing the containers. Docker is designed to en- hance consistency by ensuring the environment in which your developers write code matches the environments into which your applications are deployed. This reduces the risk of ”worked in dev, now an ops problem.”
+- **A logical segregation of duties:** With Docker, Developers care about their applications running inside containers, and Operations cares about managing the containers. Docker is designed to enhance consistency by ensuring the environment in which your developers write code matches the environments into which your applications are deployed. This reduces the risk of ”worked in dev, now an ops problem.”
 - **Fast, efficient development life cycle:** Docker aims to reduce the cycle time between code being written and code being tested, deployed, and used. It aims to make your applications portable, easy to build, and easy to collaborate on.
 - **Encourages service orientated architecture:** Docker also encourages service-oriented and microservices architectures. Docker recommends that each container run a single application or process. This promotes a distributed application model where an application or service is represented by a series of inter-connected containers. This makes it easy to distribute, scale, debug and introspect your applications.
+
+#### Cons:
+
+- Increased complexity due to an additional layer. This affects not only the deployment but also the development and build.
+- In addition, managing a huge amount of containers is challenging – especially when it comes to clustering containers. Tools like <a href="http://kubernetes.io/">Google Kubernetes</a> and <a href="http://mesos.apache.org/">Apache Mesos</a> can help here.
+- The containers share the same kernel and are therefore less isolated than real VMs. A bug in the kernel affects every container.
+- Docker bases on Linux Containers (LXU), which is a Linux technology. Therefore, we can’t run Docker on other systems and our container is always a Linux system. But <a href="http://boot2docker.io/">Boot2Docker</a> enables the usage of Docker on Windows and Mac OS X by using VirtualBox. The Docker client runs on the host OS and communicates with the Docker daemon inside the VirtualBox. Unfortunately, this is less comfortable and makes daily use clumsy and more complicated than running Docker natively.
+
+### What are the uses of Docker?
+
+- Helping make your local development and build work more faster, more efficient, and more lightweight. Local developers can build, run, and share Docker containers. Containers can be built in development and promoted to testing environments and, in turn, to production.
+- Running stand-alone services and applications consistently across multiple environments, a concept especially useful in service-oriented architectures and deployments that rely heavily on micro-services.
+- Using Docker to create isolated instances to run tests like, for example, those launched by a Continuous Integration (CI) suite like Jenkins CI.
+- Building and testing complex applications and architectures on a local host prior to deployment into a production environment.
+- Building a multi-user Platform-as-a-Service (PAAS) infrastructure.
+- Providing lightweight stand-alone sandbox environments for developing, testing, and teaching technologies, such as the Unix shell or a programming language.
+- Software as a Service applications.
+- Highly performant, hyperscale deployments of hosts.
