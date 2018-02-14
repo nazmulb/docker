@@ -51,3 +51,12 @@ Docker also doesn’t care where you ship your container: you can build on your 
 With Docker, we can quickly build an application server, a message bus, a utility appliance, a CI test bed for an application, or one of a thousand other possible applications, services, and tools. It can build local, self-contained test environments or replicate complex application stacks for production or development purposes.
 
 <img alt="How docker works" src="https://raw.githubusercontent.com/nazmulb/docker/master/how-docker-works.png" height="350px" />
+
+### What are the pros and cons of Docker?
+
+#### Pros:
+
+- **An easy and lightweight way to model reality:** Docker is fast. You can Dockerize your application in minutes. Docker relies on a copy-on-write model so that making changes to your application is also incredibly fast: only what you want to change gets changed. Most Docker containers take less than a second to launch. Containers are highly performant and you can pack more of them into your hosts and make the best possible use of your resources.
+- **A logical segregation of duties:** With Docker, Developers care about their applications running inside containers, and Operations cares about managing the containers. Docker is designed to en- hance consistency by ensuring the environment in which your developers write code matches the environments into which your applications are deployed. This reduces the risk of ”worked in dev, now an ops problem.”
+- **Fast, efficient development life cycle:** Docker aims to reduce the cycle time between code being written and code being tested, deployed, and used. It aims to make your applications portable, easy to build, and easy to collaborate on.
+- **Encourages service orientated architecture:** Docker also encourages service-oriented and microservices architectures. Docker recommends that each container run a single application or process. This promotes a distributed application model where an application or service is represented by a series of inter-connected containers. This makes it easy to distribute, scale, debug and introspect your applications.
