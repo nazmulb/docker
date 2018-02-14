@@ -95,6 +95,6 @@ docker info
 docker run --name nazmul_first_container -i -t ubuntu bash
 ```
 
-- --name assign a name to the container
-- -i keeps STDIN (standard input) open from the container that we need for an interactive shell
-- -t allocate a pseudo-TTY which provides an interactive shell in the new container
+- `--name` assign a name to the container
+- `-i` keeps STDIN (standard input) open from the container that we need for an interactive shell
+- `-t` allocate a pseudo-TTY which provides an interactive shell in the new container
