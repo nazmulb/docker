@@ -117,3 +117,25 @@ root@b58f7bfafdbf:/#
 ##### Running `docker run` a second time with different container name using the same `ubuntu` image:
 
 <img alt="Running docker run a second time using the same image" src="https://raw.githubusercontent.com/nazmulb/docker/master/images/docker-run-second-time.png" width="650px" />
+
+#### Working with our  rst container:
+
+We are now logged into a new container, with the catchy ID of `b58f7bfafdbf`, as the `root` user. This is a fully  edged Ubuntu host, and we can do anything we like in it. Let’s explore it a bit, starting with asking for its hostname.
+
+```js
+root@b58f7bfafdbf:/# hostname
+b58f7bfafdbf
+```
+
+We see that our container’s hostname is the container ID. Let’s have a look at the `/etc/hosts` file too.
+
+```js
+root@b58f7bfafdbf:/# cat /etc/hosts
+127.0.0.1       localhost
+::1     localhost ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+172.17.0.2      b58f7bfafdbf
+```
