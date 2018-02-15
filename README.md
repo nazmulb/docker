@@ -110,10 +110,10 @@ When the container had been created, Docker ran the `bash` command inside it; th
 root@b58f7bfafdbf:/#
 ```
 
-##### What happens after running docker run:
+##### What happens after running `docker run`:
 
 <img alt="What happens after running docker run" src="https://raw.githubusercontent.com/nazmulb/docker/master/images/docker-run.png" width="650px" />
 
-##### Running docker run a second time using the same `ubuntu` image:
+##### Running `docker run` a second time using the same `ubuntu` image:
 
 <img alt="Running docker run a second time using the same image" src="https://raw.githubusercontent.com/nazmulb/docker/master/images/docker-run-second-time.png" width="650px" />
