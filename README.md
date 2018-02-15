@@ -98,3 +98,22 @@ docker run --name nazmul_first_container -i -t ubuntu bash
 - `--name` assign a name to the container
 - `-i` keeps STDIN (standard input) open from the container that we need for an interactive shell
 - `-t` allocate a pseudo-TTY which provides an interactive shell in the new container
+
+
+So what was happening in the background here? Firstly, Docker checked locally for the `ubuntu` image. If it can’t find the image on our local Docker host, it will reach out to the <a href="https://hub.docker.com/">Docker Hub</a> registry run by Docker, Inc., and look for it there. Once Docker had found the image, it downloaded the image and stored it on the local host.
+
+Docker then used this image to create a new container inside a filesystem. The container has a network, IP address, and a bridge interface to talk to the local host. Finally, we told Docker which command to run in our new container, in this case launching a Bash shell with the `bash` command.
+
+When the container had been created, Docker ran the `bash` command inside it; the container’s shell was presented to us like so:
+
+```js
+root@b58f7bfafdbf:/#
+```
+
+##### What happens after running docker run:
+
+<img alt="What happens after running docker run" src="https://raw.githubusercontent.com/nazmulb/docker/master/docker-run.png" height="650px" />
+
+##### Running docker run a second time using the same `ubuntu` image:
+
+<img alt="Running docker run a second time using the same image" src="https://raw.githubusercontent.com/nazmulb/docker/master/docker-run-second-time.png" height="650px" />
