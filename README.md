@@ -118,9 +118,9 @@ root@b58f7bfafdbf:/#
 
 <img alt="Running docker run a second time using the same image" src="https://raw.githubusercontent.com/nazmulb/docker/master/images/docker-run-second-time.png" width="650px" />
 
-#### Working with our  rst container:
+#### Working with our first container:
 
-We are now logged into a new container, with the catchy ID of `b58f7bfafdbf`, as the `root` user. This is a fully  edged Ubuntu host, and we can do anything we like in it. Let’s explore it a bit, starting with asking for its hostname.
+We are now logged into a new container, with the catchy ID of `b58f7bfafdbf`, as the `root` user. This is a fully fledged Ubuntu host, and we can do anything we like in it. Let’s explore it a bit, starting with asking for its hostname.
 
 ```js
 root@b58f7bfafdbf:/# hostname
@@ -138,4 +138,13 @@ ff00::0 ip6-mcastprefix
 ff02::1 ip6-allnodes
 ff02::2 ip6-allrouters
 172.17.0.2      b58f7bfafdbf
+```
+
+Docker has also added a host entry for our container with its IP address. We can also check its running processes.
+
+```js
+root@b58f7bfafdbf:/# ps -aux
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root         1  0.0  0.1  18244  3168 pts/0    Ss   04:31   0:00 bash
+root        16  5.0  0.1  34424  2664 pts/0    R+   06:52   0:00 ps -aux
 ```
