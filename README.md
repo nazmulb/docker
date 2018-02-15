@@ -50,7 +50,7 @@ Docker also doesn’t care where you ship your container: you can build on your 
 
 With Docker, we can quickly build an application server, a message bus, a utility appliance, a CI test bed for an application, or one of a thousand other possible applications, services, and tools. It can build local, self-contained test environments or replicate complex application stacks for production or development purposes.
 
-<img alt="How docker works" src="https://raw.githubusercontent.com/nazmulb/docker/master/images/how-docker-works.png" width="350px" />
+<img alt="How docker works" src="https://raw.githubusercontent.com/nazmulb/docker/master/images/how-docker-works.png" width="550px" />
 
 ### What are the pros and cons of Docker?
 
