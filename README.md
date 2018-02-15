@@ -13,14 +13,14 @@ Containerization is increasingly popular because containers are:
 - **Scalable:** You can increase and automatically distribute container replicas.
 - **Stackable:** You can stack services vertically and on-the-fly.
 
-<img alt="Docker container" src="https://raw.githubusercontent.com/nazmulb/docker/master/images/container.png" height="300px" />
+<img alt="Docker container" src="https://raw.githubusercontent.com/nazmulb/docker/master/images/container.png" width="300px" />
 
 ### Docker components:
 
 #### Docker Engine: 
 Docker is a client-server application. The Docker client talks to the Docker server or daemon, which, in turn, does all the work. the Docker daemon called the Docker Engine. Docker ships with a command line client binary, docker, as well as a full RESTful API to interact with the daemon. You can run the Docker daemon and client on the same host or connect your local Docker client to a remote daemon running on another host. You can see Docker’s architecture depicted here:
 
-<img alt="Docker architecture" src="https://raw.githubusercontent.com/nazmulb/docker/master/images/docker-architecture1.png" height="350px" />
+<img alt="Docker architecture" src="https://raw.githubusercontent.com/nazmulb/docker/master/images/docker-architecture1.png" width="350px" />
 
 #### Docker images: 
 Images are the building blocks of the Docker world. You launch your containers from images. Images are the ”build” part of Docker’s life cycle. They are a layered format, using Union file systems, that are built step-by-step using a series of instructions. For example:
@@ -50,7 +50,7 @@ Docker also doesn’t care where you ship your container: you can build on your 
 
 With Docker, we can quickly build an application server, a message bus, a utility appliance, a CI test bed for an application, or one of a thousand other possible applications, services, and tools. It can build local, self-contained test environments or replicate complex application stacks for production or development purposes.
 
-<img alt="How docker works" src="https://raw.githubusercontent.com/nazmulb/docker/master/images/how-docker-works.png" height="350px" />
+<img alt="How docker works" src="https://raw.githubusercontent.com/nazmulb/docker/master/images/how-docker-works.png" width="350px" />
 
 ### What are the pros and cons of Docker?
 
@@ -112,8 +112,8 @@ root@b58f7bfafdbf:/#
 
 ##### What happens after running docker run:
 
-<img alt="What happens after running docker run" src="https://raw.githubusercontent.com/nazmulb/docker/master/images/docker-run.png" height="650px" />
+<img alt="What happens after running docker run" src="https://raw.githubusercontent.com/nazmulb/docker/master/images/docker-run.png" width="650px" />
 
 ##### Running docker run a second time using the same `ubuntu` image:
 
-<img alt="Running docker run a second time using the same image" src="https://raw.githubusercontent.com/nazmulb/docker/master/images/how-docker-works.png" height="650px" />
+<img alt="Running docker run a second time using the same image" src="https://raw.githubusercontent.com/nazmulb/docker/master/images/docker-run-second-time.png" width="650px" />
