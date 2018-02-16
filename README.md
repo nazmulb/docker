@@ -155,12 +155,36 @@ Installing a package in our first container:
 root@b58f7bfafdbf:/# apt-get update && apt-get install vim
 ```
 
-We’ll now have Vim installed in our container. You can keep playing with the container for as long as you like. When you’re done, type `exit`.
+We’ll now have Vim installed in our container. You can keep playing with the container for as long as you like. When you’re done, type `exit`. So what’s happened to our container? Well, it has now stopped running. The container only runs for as long as the command we specified, `bash`, is running. Once we exited the container, that command ended, and the container was stopped.
 
-The container still exists; we can show a list of current containers using the `docker ps` command.
+The container still exists; we can show a list of current containers using the `docker ps -a` command.
 
 ```js
 CONTAINER ID        IMAGE         NAMES                     COMMAND           CREATED             STATUS              PORTS
                                            
 b58f7bfafdbf        ubuntu        nazmul_first_container    "bash"            41 hours ago        Up 41 hours
 ```
+
+##### Starting a stopped container:
+
+```js
+docker start nazmul_first_container
+```
+
+Now if we run the `docker ps` command without the `-a` flag, we’ll see our running containers.
+
+##### Attaching to a container:
+
+Our container will restart with the same options we’d specified when we launched it with the docker run command. So there is an interactive session waiting on our running container. We can reattach to that session using the docker attach command.
+
+```js
+docker attach nazmul_first_container
+root@b58f7bfafdbf:/#
+```
+
+##### Stopping a running container:
+
+```js
+docker stop nazmul_first_container
+```
+
