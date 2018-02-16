@@ -148,3 +148,19 @@ USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
 root         1  0.0  0.1  18244  3168 pts/0    Ss   04:31   0:00 bash
 root        16  5.0  0.1  34424  2664 pts/0    R+   06:52   0:00 ps -aux
 ```
+
+Installing a package in our first container:
+
+```js
+root@b58f7bfafdbf:/# apt-get update && apt-get install vim
+```
+
+We’ll now have Vim installed in our container. You can keep playing with the container for as long as you like. When you’re done, type `exit`.
+
+The container still exists; we can show a list of current containers using the `docker ps` command.
+
+```js
+CONTAINER ID        IMAGE         NAMES                     COMMAND           CREATED             STATUS              PORTS
+                                           
+b58f7bfafdbf        ubuntu        nazmul_first_container    "bash"            41 hours ago        Up 41 hours
+```
