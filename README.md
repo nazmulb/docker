@@ -247,6 +247,7 @@ PID                 USER                TIME                COMMAND
 docker stats nazmul_daemon_1
 CONTAINER           CPU %               MEM USAGE / LIMIT   MEM %               NET I/O             BLOCK I/O           PIDS
 nazmul_daemon_1     0.18%               604KiB / 1.952GiB   0.03%               3.11kB / 0B         32.8kB / 0B         2
+```
 
 ##### Run a command in a running container using `docker exec`:
 
