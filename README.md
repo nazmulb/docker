@@ -188,3 +188,55 @@ root@b58f7bfafdbf:/#
 docker stop nazmul_first_container
 ```
 
+#### Creating daemonized containers:
+
+Daemonized containers don’t have the interactive session we’ve just used and are ideal for running applications and services.
+
+##### Creating a long running container:
+
+```js
+docker run --name nazmul_daemon_1 -d ubuntu sh -c "while true; do echo hello world; sleep 1; done"
+```
+
+- `-d` Run container in background and print container ID
+- `-c` CPU shares (relative weight)
+
+We’ve also specified a `while `loop as our container command. Our loop will echo `hello world` over and over again until the container is stopped or the process stops.
+
+##### Fetching the logs of our daemonized container:
+
+```js
+docker logs nazmul_daemon_1
+hello world
+hello world
+hello world
+hello world
+...
+```
+
+###### You can see the last 10 logs using `--tail` flag:
+
+```js
+docker logs --tail 10 nazmul_daemon_1
+```
+
+###### You also follow the last log using `-f` with the `--tail` flag:
+
+```js
+docker logs --tail 0 -f nazmul_daemon_1
+```
+
+###### To make debugging a little easier, we can also add the `-t` flag to prefix our log entries with timestamps:
+
+```js
+docker logs --tail 0 -ft nazmul_daemon_1
+```
+
+###### Inspecting the processes of the daemonized container:
+
+```js
+docker top nazmul_daemon_1
+PID                 USER                TIME                COMMAND
+20808               root                0:00                sh -c while true; do echo hello world; sleep 1; done
+22190               root                0:00                sleep 1
+```
