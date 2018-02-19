@@ -240,3 +240,24 @@ PID                 USER                TIME                COMMAND
 20808               root                0:00                sh -c while true; do echo hello world; sleep 1; done
 22190               root                0:00                sleep 1
 ```
+
+###### To see the statistics of our daemonized container:
+
+```js
+docker stats nazmul_daemon_1
+CONTAINER           CPU %               MEM USAGE / LIMIT   MEM %               NET I/O             BLOCK I/O           PIDS
+nazmul_daemon_1     0.18%               604KiB / 1.952GiB   0.03%               3.11kB / 0B         32.8kB / 0B         2
+
+##### Run a command in a running container using `docker exec`:
+
+We can use a `docker exec` background command to run maintenance, monitoring or management tasks inside a running container. In this case our command will create a new empty file called `/etc/new_config_file` inside our container.
+
+```js
+docker exec -d nazmul_daemon_1 touch /etc/new_config_file
+```
+
+We can also run interactive tasks like opening a shell inside our daemonized container. In this case our command will create a new `bash` session inside the container.
+
+```js
+docker exec -it nazmul_daemon_1 bash
+```
