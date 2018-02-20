@@ -262,6 +262,12 @@ docker inspect nazmul_daemon_1
 docker inspect -f='{{ .State.Running }}' nazmul_daemon_1
 ```
 
+###### `docker diff` shows changed files in the container's file system.
+
+```js
+docker diff nazmul_daemon_1
+```
+
 ##### Run a command in a running container using `docker exec`:
 
 We can use a `docker exec` background command to run maintenance, monitoring or management tasks inside a running container. In this case our command will create a new empty file called `/etc/new_config_file` inside our container.
@@ -276,8 +282,20 @@ We can also run interactive tasks like opening a shell inside our daemonized con
 docker exec -it nazmul_daemon_1 bash
 ```
 
+##### Restart a container:
+
+```js
+docker restart nazmul_daemon_1
+```
+
+##### Rename a container:
+
+```js
+docker rename nazmul_daemon_1 nazmul_daemon
+```
+
 ##### Deleting a container:
 
 ```js
-docker rm nazmul_daemon_1
+docker rm nazmul_daemon
 ```
