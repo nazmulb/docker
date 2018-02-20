@@ -167,7 +167,7 @@ b58f7bfafdbf        ubuntu        nazmul_first_container    "bash"            41
 
 ##### Starting a stopped container:
 
-**You can use container name or ID to select the container for applying any commands.**
+*You can use container name or ID to select the container for applying any commands.*
 
 ```js
 docker start nazmul_first_container
