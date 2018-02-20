@@ -167,6 +167,8 @@ b58f7bfafdbf        ubuntu        nazmul_first_container    "bash"            41
 
 ##### Starting a stopped container:
 
+**You can use container name or ID to select the container for applying any commands.**
+
 ```js
 docker start nazmul_first_container
 ```
@@ -249,6 +251,17 @@ CONTAINER           CPU %               MEM USAGE / LIMIT   MEM %               
 nazmul_daemon_1     0.18%               604KiB / 1.952GiB   0.03%               3.11kB / 0B         32.8kB / 0B         2
 ```
 
+###### Inspecting a container:
+
+```js
+docker inspect nazmul_daemon_1
+```
+###### Selectively inspecting a container using the `-f` or `--format` flag:
+
+```js
+docker inspect -f='{{ .State.Running }}' nazmul_daemon_1
+```
+
 ##### Run a command in a running container using `docker exec`:
 
 We can use a `docker exec` background command to run maintenance, monitoring or management tasks inside a running container. In this case our command will create a new empty file called `/etc/new_config_file` inside our container.
@@ -261,4 +274,10 @@ We can also run interactive tasks like opening a shell inside our daemonized con
 
 ```js
 docker exec -it nazmul_daemon_1 bash
+```
+
+##### Deleting a container:
+
+```js
+docker rm nazmul_daemon_1
 ```
