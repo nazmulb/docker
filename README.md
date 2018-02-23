@@ -306,8 +306,8 @@ docker rm nazmul_daemon
 
 ```js
 docker images
-REPOSITORY                           TAG                 IMAGE ID            CREATED             SIZE
-ubuntu                               latest              2d696327ab2e        5 months ago        122MB
+REPOSITORY               TAG                 IMAGE ID            CREATED             SIZE
+ubuntu                   latest              2d696327ab2e        5 months ago        122MB
 ```
 
 We see that we’ve got an image, from a repository called `ubuntu`. This image was downloaded from a repository. Images live inside repositories, and repositories live on registries. The default registry is the public registry managed by Docker, Inc., <a href="https://hub.docker.com/">Docker Hub</a>.
@@ -330,10 +330,10 @@ c3688624ef2b: Pull complete
 
 ```js
 docker images
-REPOSITORY                           TAG                 IMAGE ID            CREATED             SIZE
-ubuntu                               latest              2d696327ab2e        5 months ago        122MB
-ubuntu                               16.04               747cb2d60bbe        4 months ago        122MB
-ubuntu                               14.04               dc4491992653        4 weeks ago         222MB
+REPOSITORY                TAG                 IMAGE ID            CREATED             SIZE
+ubuntu                    latest              2d696327ab2e        5 months ago        122MB
+ubuntu                    16.04               747cb2d60bbe        4 months ago        122MB
+ubuntu                    14.04               dc4491992653        4 weeks ago         222MB
 ```
 
 Each image is being listed by the tags applied to it, so, for example, 14.04, 16.10 and so on. We can refer to a specific image inside a repository by suffixing the repository name with a colon and a tag name, for example:
