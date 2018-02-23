@@ -299,3 +299,55 @@ docker rename nazmul_daemon_1 nazmul_daemon
 ```js
 docker rm nazmul_daemon
 ```
+
+### Working with Docker images and repositories:
+
+#### Listing Docker images:
+
+```js
+docker images
+REPOSITORY                           TAG                 IMAGE ID            CREATED             SIZE
+ubuntu                               latest              2d696327ab2e        5 months ago        122MB
+```
+
+We see that we’ve got an image, from a repository called `ubuntu`. This image was downloaded from a repository. Images live inside repositories, and repositories live on registries. The default registry is the public registry managed by Docker, Inc., <a href="https://hub.docker.com/">Docker Hub</a>.
+
+You can think of an image repository as being much like a Git repository. It contains images, layers, and metadata about those images.
+
+Each repository can contain multiple images (e.g., the ubuntu repository contains images for Ubuntu 12.04, 12.10, 13.04, 13.10, 14.04 and 16.04). Let’s get another image from the ubuntu repository now.
+
+##### Pulling the Ubuntu 14.04 image:
+
+```js
+docker pull ubuntu:14.04
+14.04: Pulling from library/ubuntu
+c954d15f947c: Pull complete
+c3688624ef2b: Pull complete
+848fe4263b3b: Pull complete
+...
+```
+##### Listing the ubuntu Docker images:
+
+```js
+docker images
+REPOSITORY                           TAG                 IMAGE ID            CREATED             SIZE
+ubuntu                               latest              2d696327ab2e        5 months ago        122MB
+ubuntu                               16.04               747cb2d60bbe        4 months ago        122MB
+ubuntu                               14.04               dc4491992653        4 weeks ago         222MB
+```
+
+Each image is being listed by the tags applied to it, so, for example, 14.04, 16.10 and so on. We can refer to a specific image inside a repository by suffixing the repository name with a colon and a tag name, for example:
+
+```js
+docker run -it --name nazmul_new_container ubuntu:14.04 bash
+```
+
+This launches a container from the `ubuntu:14.04` image, which is an Ubuntu 14.04 operating system.
+
+**There are two types of repositories:** user repositories, which contain images contributed by Docker users, and top-level repositories, which are controlled by the people behind Docker.
+
+A user repository takes the form of a username and a repository name; for example, `nazmulb/mysql`.
+- Username: `nazmulb`
+- Repository name: `mysql`
+
+Alternatively, a top-level repository only has a repository name like `ubuntu`.
