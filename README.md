@@ -364,7 +364,7 @@ jwilder/nginx-proxy     Automated Nginx reverse proxy for docker c...   1277    
 
 #### Building images with a Dockerfile:
 
-The `Dockerfile` uses a basic DSL (Domain Speci c Language) with instructions for building Docker images. Once we have a `Dockerfile` we then use the `docker build` command to build a new image from the instructions in the `Dockerfile`.
+The `Dockerfile` uses a basic DSL (Domain Specific Language) with instructions for building Docker images. Once we have a `Dockerfile` we then use the `docker build` command to build a new image from the instructions in the `Dockerfile`.
 
 ##### Our first Dockerfile:
 
@@ -377,6 +377,8 @@ mkdir static_web && cd static_web && touch Dockerfile
 ```
 
 This directory is our build environment, which is what Docker calls a context or build context. Docker will upload the build context, as well as any files and directories contained in it, to our Docker daemon when the build is run. This provides the Docker daemon with direct access to any code, files or other data you might want to include in the image.
+
+###### Our first Dockerfile:
 
 ```js
 FROM ubuntu:14.04
