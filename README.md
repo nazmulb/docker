@@ -391,3 +391,29 @@ EXPOSE 80
 ENTRYPOINT ["nginx"]
 CMD ["-g", "daemon off;"]
 ```
+
+The `Dockerfile` contains a series of instructions paired with arguments. Instructions in the `Dockerfile` are processed from the top down, so you should order them accordingly.
+
+Each instruction adds a new layer to the image and then commits the image. Docker executing instructions roughly follow a workflow:
+
+- Docker runs a container from the image.
+- An instruction executes and makes a change to the container.
+- Docker commits a new layer for the image.
+- Docker then runs a new container from this new image.
+- The next instruction in the file is executed, and the process repeats until all instructions have been executed.
+
+*`Dockerfile` instructions:*
+
+- `FROM`: Sets the Base Image for subsequent instructions. Usage: `FROM <image>[:<tag>]`
+- `MAINTAINER`: Set the Author field of the generated images. Usage: `MAINTAINER <name>`
+- `ENV`: Sets environment variable. Usage: `ENV <key> <value>`
+- `RUN`: Execute any commands in a new layer on top of the current image and commit the results. Usage: `RUN <command>`
+- `CMD`: Specifies the command to run when a container is launched. It is similar to the `RUN` instruction, but rather than running the command when the container is being built, it will specify the command to run when the container is launched, much like specifying a command to run when launching a container with the `docker run` command. There can only be one `CMD` instruction in a `Dockerfile`. Usage: `CMD ["executable","param1","param2"]`
+- `ENTRYPOINT`: We can override the `CMD` instruction on the `docker run` command line. The `ENTRYPOINT` instruction provides a command that isn’t as easily overridden. Instead, any arguments we specify on the `docker run` command line will be passed as arguments to the command specified in the `ENTRYPOINT`. Usage: `ENTRYPOINT ["executable", "param1", "param2"]`
+- `EXPOSE`: Informs Docker that the container listens on the specified network ports at runtime. It does not actually publish the port. Usage: `EXPOSE <port> [<port>...]`
+- `WORKDIR`: Sets the working directory for the container. Usage: `WORKDIR /path/to/workdir`
+- `VOLUME` Adds volumes to any container. Volumes can be shared and reused between containers. A container doesn’t have to be running to share its volumes. Usage: `VOLUME ["/data"]`
+- `ADD`: Copies new files, directories or remote file to container. Usage: `ADD <src>... <dest>`
+- `COPY`: This is closely related to the `ADD` instruction. The key difference is that the `COPY` instruction is purely focused on copying local files from the build context and does not have any extraction or decompression capabilities. Usage: `COPY <src>... <dest>`
+- `USER`: Specifies a user that the image should be run as; Usage: `USER <userName>`
+- `ARG`: Defines variables that can be passed at build-time via the `docker build` command. This is done using the `--build-arg <varname>=<value>` flag. Usage: `ARG <name>[=<default value>]` 
