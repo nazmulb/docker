@@ -467,3 +467,17 @@ Hi, I am your container
 ```
 
 Now we’ve got a simple Docker-based web server :)
+
+#### Pushing images to the Docker Hub:
+
+```js
+docker push nazmulb/static_web
+```
+
+Please check the <a href="https://hub.docker.com/">Docker Hub</a>
+
+#### Deleting an image:
+
+```js
+docker rmi nazmulb/static_web
+```
