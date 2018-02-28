@@ -428,6 +428,14 @@ docker build -t 'nazmulb/static_web:v1.1' .
 
 We’ve specified the `-t ` option to mark our resulting image with a repository and a name, here the `nazmulb` repository and the image name `static_web`. You can also tag images during the build process by sufixing the tag after the image name with a colon like `v1.1`. The trailing `.` tells Docker to look in the local directory to find the `Dockerfile`.
 
+###### Listing our new Docker image:
+
+```js
+docker images nazmulb/static_web
+REPOSITORY           TAG                 IMAGE ID            CREATED             SIZE
+nazmulb/static_web   v1.1                c1a45862d4ef        About an hour ago   146MB
+```
+
 ###### Using the docker history command:
 
 If we want to drill down into how our image was created, we can use the docker history command.
