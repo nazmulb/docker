@@ -381,7 +381,7 @@ This directory is our build environment, which is what Docker calls a context or
 ###### Our first Dockerfile:
 
 ```js
-FROM ubuntu:14.04
+FROM ubuntu:12.04
 MAINTAINER Nazmul Basher "nazmul.basher@gmail.com"
 ENV REFRESHED_AT 2018-02-26
 RUN apt-get update
@@ -402,7 +402,9 @@ Each instruction adds a new layer to the image and then commits the image. Docke
 - Docker then runs a new container from this new image.
 - The next instruction in the file is executed, and the process repeats until all instructions have been executed.
 
-*`Dockerfile` instructions:*
+Here we’ve specified a command for the container to run: `nginx -g "daemon off;"`. This will launch Nginx in the foreground to run our web server.
+
+*Dockerfile instructions:*
 
 - `FROM`: Sets the Base Image for subsequent instructions. Usage: `FROM <image>[:<tag>]`
 - `MAINTAINER`: Set the Author field of the generated images. Usage: `MAINTAINER <name>`
@@ -417,3 +419,43 @@ Each instruction adds a new layer to the image and then commits the image. Docke
 - `COPY`: This is closely related to the `ADD` instruction. The key difference is that the `COPY` instruction is purely focused on copying local files from the build context and does not have any extraction or decompression capabilities. Usage: `COPY <src>... <dest>`
 - `USER`: Specifies a user that the image should be run as; Usage: `USER <userName>`
 - `ARG`: Defines variables that can be passed at build-time via the `docker build` command. This is done using the `--build-arg <varname>=<value>` flag. Usage: `ARG <name>[=<default value>]` 
+
+###### Building the image from our Dockerfile:
+
+```js
+docker build -t 'nazmulb/static_web:v1.1' .
+```
+
+We’ve specified the `-t ` option to mark our resulting image with a repository and a name, here the `nazmulb` repository and the image name `static_web`. You can also tag images during the build process by sufixing the tag after the image name with a colon like `v1.1`. The trailing `.` tells Docker to look in the local directory to find the `Dockerfile`.
+
+###### Using the docker history command:
+
+If we want to drill down into how our image was created, we can use the docker history command.
+
+```js
+docker history nazmulb/static_web:v1.1
+```
+
+###### Launching a container from our new image:
+
+```js
+docker run -d -p 7777:80 --name nazmul_static_web nazmulb/static_web:v1.1
+```
+
+- `-p`: This flag manages which network ports Docker publishes at runtime. This would bind port `80` on the container to port `7777` on the local host.
+
+###### The docker port command:
+
+```js
+docker port nazmul_static_web
+80/tcp -> 0.0.0.0:7777
+```
+
+###### Connecting to the container via curl:
+
+```js
+curl localhost:7777
+Hi, I am your container
+```
+
+Now we’ve got a simple Docker-based web server :)

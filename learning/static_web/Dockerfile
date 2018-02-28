@@ -1,4 +1,4 @@
-FROM ubuntu:14.04
+FROM ubuntu:12.04
 MAINTAINER Nazmul Basher "nazmul.basher@gmail.com"
 ENV REFRESHED_AT 2018-02-26
 RUN apt-get update
