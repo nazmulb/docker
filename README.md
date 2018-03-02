@@ -490,7 +490,7 @@ docker rmi nazmulb/static_web
 mkdir sample && cd sample && touch Dockerfile
 ```
 
-We’re also going to need some Nginx configuration files to run our website. Let’s create a directory called nginx inside our sample directory to hold them. We can download some example files I’ve prepared earlier from GitHub.
+We’re also going to need some Nginx configuration files to run our website. Let’s create a directory called `nginx` inside our `sample` directory to hold them. We can download some example files I’ve prepared earlier from GitHub.
 
 ##### Getting our Nginx configuration files:
 
@@ -564,4 +564,4 @@ cd website
 vim index.html
 ```
 
-Change some texts in the `index.html` file and save it. Agian browse the Sample website using <a href="http://localhost:7878/">http://localhost:7878</a> We see that our Sample website has been updated :)
+Change some texts in the `index.html` file and save it. Agian browse the Sample website using <a href="http://localhost:7878/">http://localhost:7878</a>. We see that our Sample website has been updated :)
