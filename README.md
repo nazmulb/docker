@@ -481,3 +481,87 @@ Please check the <a href="https://hub.docker.com/">Docker Hub</a>
 ```js
 docker rmi nazmulb/static_web
 ```
+
+### Using Docker to test a static website:
+
+##### Creating a directory for our Sample website Dockerfile:
+
+```js
+mkdir sample && cd sample && touch Dockerfile
+```
+
+We’re also going to need some Nginx configuration files to run our website. Let’s create a directory called nginx inside our sample directory to hold them. We can download some example files I’ve prepared earlier from GitHub.
+
+##### Getting our Nginx configuration files:
+
+```js
+mkdir nginx && cd nginx
+wget https://raw.githubusercontent.com/nazmulb/docker/master/learning/sample/nginx/global.conf
+wget https://raw.githubusercontent.com/nazmulb/docker/master/learning/sample/nginx/nginx.conf
+cd ..
+```
+
+##### Our basic Dockerfile for the Sample website:
+
+```js
+FROM ubuntu:12.04
+MAINTAINER Nazmul Basher "nazmul.basher@gmail.com"
+ENV REFRESHED_AT 2018-03-02
+RUN apt-get -yqq update && apt-get -yqq install nginx 
+RUN mkdir -p /var/www/html/website
+ADD nginx/global.conf /etc/nginx/conf.d/
+ADD nginx/nginx.conf /etc/nginx/nginx.conf
+EXPOSE 80
+ENTRYPOINT ["nginx"]
+```
+
+Here we’ve written a simple `Dockerfile` that:
+- Installs Nginx.
+- Creates a directory, `/var/www/html/website/`, in the container.
+- Adds the Nginx configuration from the local files we downloaded to our image.
+- Exposes port `80` on the image.
+
+Our two Nginx configuration files configure Nginx for running our Sample website.
+
+##### Building our new Nginx image:
+
+```js
+docker build -t 'nazmulb/nginx' .
+```
+
+##### Downloading our Sample website:
+
+```js
+mkdir website && cd website && mkdir css && cd css
+wget https://raw.githubusercontent.com/nazmulb/docker/master/learning/sample/website/css/style.css
+cd ..
+wget https://raw.githubusercontent.com/nazmulb/docker/master/learning/sample/website/index.html
+cd ..
+```
+
+##### Running our first Nginx testing container:
+
+```js
+docker run -d -p 7878:80 --name nazmul_website -v $PWD/website:/var/www/html/website nazmulb/nginx
+```
+
+- `-v`: Allows us to create a volume in our container from a directory on the host. Volumes are specially designated directories within one or more containers that bypass the layered Union File System to provide persistent or shared data for Docker.
+
+##### Viewing the Sample website container:
+
+```js
+docker ps
+CONTAINER ID        IMAGE              COMMAND      CREATED             STATUS           PORTS                  NAMES
+b2516584e24b        nazmulb/nginx      "nginx"      5 minutes ago       Up 5 minutes     0.0.0.0:7878->80/tcp   nazmul_website
+```
+
+Now browse the Sample website using <a href="http://localhost:7878/">http://localhost:7878</a>
+
+##### Editing our Sample website:
+
+```js
+cd website
+vim index.html
+```
+
+Change some texts in the `index.html` file and save it. Agian browse the Sample website using <a href="http://localhost:7878/">http://localhost:7878</a> We see that our Sample website has been updated :)
