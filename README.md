@@ -593,6 +593,31 @@ docker run -d -p 3308:3306 --name nazmul_mysql -e MYSQL_ROOT_PASSWORD=123 -v $PW
 
 ```js
 docker exec -it nazmul_mysql bash
-root@76aca89ffb49:/# mysql -p -u root
+root@259cbca5f9f3:/# mysql -p -u root
 mysql>source /var/lib/mysql/myapp.sql
 ```
+
+##### Getting our Nginx Dockerfile and configuration files:
+
+```js
+wget https://raw.githubusercontent.com/nazmulb/docker/master/learning/sample_php/Dockerfile
+wget https://raw.githubusercontent.com/nazmulb/docker/master/learning/sample_php/default
+wget https://raw.githubusercontent.com/nazmulb/docker/master/learning/sample_php/start.sh
+wget https://raw.githubusercontent.com/nazmulb/docker/master/learning/sample_php/supervisord.conf
+
+sudo chmod +x ./start.sh
+```
+
+##### Building Nginx PHP image:
+
+```js
+docker build -t 'nazmulb/nginx-php' .
+```
+
+##### Running our Nginx PHP container by linking with Mysql:
+
+```js
+docker run -d -p 7676:80 --name nazmul_website --link nazmul_mysql:mysql -v $PWD/website:/var/www/html nazmulb/nginx-php
+```
+
+Now browse the website using <a href="http://localhost:7878/">http://localhost:7878</a>
