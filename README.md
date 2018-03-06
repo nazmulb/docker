@@ -572,7 +572,14 @@ Change some texts in the `index.html` file and save it. Agian browse the Sample 
 ##### Creating a directory for running the web application:
 
 ```js
-mkdir sample_php2 && cd sample_php2 && mkdir website
+mkdir sample_php && cd sample_php && mkdir website && cd website && mkdir css && cd css
+wget https://raw.githubusercontent.com/nazmulb/docker/master/learning/sample_php/website/css/style.css
+cd ..
+mkdir data && cd data
+wget https://raw.githubusercontent.com/nazmulb/docker/master/learning/sample_php/website/data/myapp.sql
+cd ..
+wget https://raw.githubusercontent.com/nazmulb/docker/master/learning/sample_php/website/db.php
+wget https://raw.githubusercontent.com/nazmulb/docker/master/learning/sample_php/website/index.php
 ```
 
 ##### Running our Mysql container:
