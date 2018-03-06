@@ -580,6 +580,7 @@ wget https://raw.githubusercontent.com/nazmulb/docker/master/learning/sample_php
 cd ..
 wget https://raw.githubusercontent.com/nazmulb/docker/master/learning/sample_php/website/db.php
 wget https://raw.githubusercontent.com/nazmulb/docker/master/learning/sample_php/website/index.php
+cd ..
 ```
 
 ##### Running our Mysql container:
@@ -588,8 +589,10 @@ wget https://raw.githubusercontent.com/nazmulb/docker/master/learning/sample_php
 docker run -d -p 3308:3306 --name nazmul_mysql -e MYSQL_ROOT_PASSWORD=123 -v $PWD/website/data:/var/lib/mysql mysql:5.6
 ```
 
-##### Running our Mysql client from the container:
+##### Running our Mysql client from the container and import database table:
 
 ```js
 docker exec -it nazmul_mysql bash
+root@76aca89ffb49:/# mysql -p -u root
+mysql>source /var/lib/mysql/myapp.sql
 ```
