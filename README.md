@@ -620,4 +620,4 @@ docker build -t 'nazmulb/nginx-php' .
 docker run -d -p 7676:80 --name nazmul_website --link nazmul_mysql:mysql -v $PWD/website:/var/www/html nazmulb/nginx-php
 ```
 
-Now browse the website using <a href="http://localhost:7878/">http://localhost:7878</a>
+Now browse the website using <a href="http://localhost:7676/">http://localhost:7676</a>
