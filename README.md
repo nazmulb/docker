@@ -567,42 +567,22 @@ vim index.html
 Change some texts in the `index.html` file and save it. Agian browse the Sample website using <a href="http://localhost:7878/">http://localhost:7878</a>. We see that our Sample website has been updated :)
 
 
-### Using Docker to build and test a dynamic web application:
+### Using Docker to build a PHP & Mysql based web application:
 
-#### Mysql server using Dockerfile:
-
-##### Creating a directory for mysql:
+##### Creating a directory for running the web application:
 
 ```js
-mkdir sample_mysql && cd sample_mysql && touch Dockerfile
+mkdir sample_php2 && cd sample_php2 && mkdir website
 ```
 
-##### Dockerfile for the mysql sever:
+##### Running our Mysql container:
 
 ```js
-FROM ubuntu:trusty-20170620
+docker run -d -p 3308:3306 --name nazmul_mysql -e MYSQL_ROOT_PASSWORD=123 -v $PWD/website/data:/var/lib/mysql mysql:5.6
+```
 
-RUN echo 'APT::Install-Recommends 0;' >> /etc/apt/apt.conf.d/01norecommends \
- && echo 'APT::Install-Suggests 0;' >> /etc/apt/apt.conf.d/01norecommends \
- && apt-get update \
- && DEBIAN_FRONTEND=noninteractive apt-get install -y vim.tiny wget sudo net-tools ca-certificates unzip apt-transport-https \
- && rm -rf /var/lib/apt/lists/*
+##### Running our Mysql client from the container:
 
-ENV MYSQL_USER=mysql \
-    MYSQL_DATA_DIR=/var/lib/mysql \
-    MYSQL_RUN_DIR=/run/mysqld \
-    MYSQL_LOG_DIR=/var/log/mysql
-
-RUN apt-get update \
- && DEBIAN_FRONTEND=noninteractive apt-get install -y mysql-server \
- && rm -rf ${MYSQL_DATA_DIR} \
- && rm -rf /var/lib/apt/lists/*
-
-COPY entrypoint.sh /sbin/entrypoint.sh
-RUN chmod 755 /sbin/entrypoint.sh
-
-EXPOSE 3306/tcp
-VOLUME ["${MYSQL_DATA_DIR}", "${MYSQL_RUN_DIR}"]
-ENTRYPOINT ["/sbin/entrypoint.sh"]
-CMD ["/usr/bin/mysqld_safe"]
+```js
+docker exec -it nazmul_mysql bash
 ```
