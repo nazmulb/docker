@@ -614,10 +614,12 @@ sudo chmod +x ./start.sh
 docker build -t 'nazmulb/nginx-php' .
 ```
 
-##### Running our Nginx PHP container by linking with Mysql:
+##### Running our Nginx PHP container by connecting with Mysql:
 
 ```js
 docker run -d -p 7676:80 --name nazmul_website --link nazmul_mysql:mysql -v $PWD/website:/var/www/html nazmulb/nginx-php
 ```
 
 Now browse the website using <a href="http://localhost:7676/">http://localhost:7676</a>
+
+As you see we connected the Mysql container with the Nginx PHP container. The two realistic methods for connecting containers are Docker Networking and Docker links. Here we used Docker links. The `--link` flag creates a client-service link between two containers. The flag takes two arguments: the container name to link and an alias for the link. In this case, we’re creating a client relationship, our `nazmul_website` container is the client, with the `nazmul_mysql` container, which is the ”service”. We’ve also added an alias for that ”service” of `mysql`.
