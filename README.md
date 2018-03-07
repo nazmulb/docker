@@ -623,3 +623,161 @@ docker run -d -p 7676:80 --name nazmul_website --link nazmul_mysql:mysql -v $PWD
 Now browse the website using <a href="http://localhost:7676/">http://localhost:7676</a>
 
 As you see we connected the Nginx PHP container with the Mysql container. The two realistic methods for connecting containers are Docker Networking and Docker links. Here we used Docker links. The `--link` flag creates a client-service link between two containers. The flag takes two arguments: the container name to link and an alias for the link. In this case, we’re creating a client relationship, our `nazmul_website` container is the client, with the `nazmul_mysql` container, which is the ”service”. We’ve also added an alias for that ”service” of `mysql`.
+
+### Docker Compose:
+
+Compose is a tool for defining and running multi-container Docker applications. With Compose, you use a YAML file to configure your application’s services. Then, with a single command, you create and start all the services from your configuration.
+
+Using Compose is basically a three-step process:
+
+- Define your app’s environment with a `Dockerfile` so it can be reproduced anywhere.
+
+- Define the services that make up your app in `docker-compose.yml` so they can be run together in an isolated environment.
+
+- Run `docker-compose up` and Compose starts and runs your entire app.
+
+Compose has commands for managing the whole lifecycle of your application:
+
+- Start, stop, and rebuild services
+- View the status of running services
+- Stream the log output of running services
+- Run a one-off command on a service
+
+#### Using Docker Compose to build a PHP & Mysql based web application:
+
+##### Creating a directory for running the web application:
+
+```js
+mkdir compose_app && cd compose_app && mkdir website && cd website && mkdir css && cd css
+wget https://raw.githubusercontent.com/nazmulb/docker/master/learning/sample_php/website/css/style.css
+cd ..
+mkdir data && cd data
+wget https://raw.githubusercontent.com/nazmulb/docker/master/learning/sample_php/website/data/myapp.sql
+cd ..
+wget https://raw.githubusercontent.com/nazmulb/docker/master/learning/sample_php/website/db.php
+wget https://raw.githubusercontent.com/nazmulb/docker/master/learning/sample_php/website/index.php
+cd ..
+wget https://raw.githubusercontent.com/nazmulb/docker/master/learning/sample_php/Dockerfile
+wget https://raw.githubusercontent.com/nazmulb/docker/master/learning/sample_php/default
+wget https://raw.githubusercontent.com/nazmulb/docker/master/learning/sample_php/start.sh
+wget https://raw.githubusercontent.com/nazmulb/docker/master/learning/sample_php/supervisord.conf
+sudo chmod +x ./start.sh
+```
+
+##### Creating the docker-compose.yml file:
+
+```js
+touch docker-compose.yml
+```
+
+After creating `docker-compose.yml` please paste the following:
+
+```js
+version: '3'
+services:
+  mysql:
+    image: mysql:5.6
+    volumes:
+      - ./website/data:/var/lib/mysql
+    ports:
+      - "3308:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: 123
+
+  nginx:
+    links:
+     - mysql
+    build: .
+    volumes:
+      - ./website:/var/www/html
+    ports:
+      - "7676:80"
+```
+
+For more information about the Compose file, see the <a href="https://docs.docker.com/compose/compose-file/">Compose file reference</a>.
+
+##### Running our app in background using compose:
+
+```js
+docker-compose up -d
+```
+
+##### Listing our container:
+
+```js
+docker-compose ps
+       Name                    Command             State               Ports
+----------------------------------------------------------------------------------------
+composeapp_mysql_1   docker-entrypoint.sh mysqld   Up      0.0.0.0:3308->3306/tcp
+composeapp_nginx_1   ./start.sh                    Up      443/tcp, 0.0.0.0:7676->80/tcp
+```
+
+##### Running our Mysql client from the container and import database table:
+
+```js
+docker exec -it composeapp_mysql_1 bash
+root@5f25ba1f19a3:/# mysql -p -u root
+mysql>source /var/lib/mysql/myapp.sql
+```
+
+Now browse the website using <a href="http://localhost:7676/">http://localhost:7676</a>
+
+##### Showing services logs:
+
+```js
+docker-compose logs
+```
+
+##### Stopping running services:
+
+```
+docker-compose stop 
+```
+
+Stops running services without removing them. They can be started again with `docker-compose start`.
+
+We can stop only one service:
+
+```
+docker-compose stop nginx
+```
+
+##### Start service:
+
+```
+docker-compose start nginx
+```
+
+##### Run a command against a service:
+
+We can run a one-time command against a service. For example, the following command starts the `nginx` service and runs `bash` as its command.
+
+```
+docker-compose run mysql bash
+```
+
+##### Removing Compose services:
+
+```
+docker-compose rm
+```
+
+If we want to stop and remove them:
+
+```
+docker-compose down
+```
+
+##### Volume List:
+
+```
+docker volume ls
+```
+
+##### Remove volume:
+
+```
+docker volume rm <volume name>
+```
+
+Happy learning :)
