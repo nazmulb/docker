@@ -468,6 +468,12 @@ Hi, I am your container
 
 Now we’ve got a simple Docker-based web server :)
 
+#### Logging into the Docker Hub to push the image:
+
+```js
+docker login
+```
+
 #### Pushing images to the Docker Hub:
 
 ```js
@@ -480,6 +486,12 @@ Please check the <a href="https://hub.docker.com/">Docker Hub</a>
 
 ```js
 docker rmi nazmulb/static_web
+```
+
+#### Logout from the Docker Hub:
+
+```js
+docker logout
 ```
 
 ### Using Docker to test a static website:
