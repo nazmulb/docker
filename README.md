@@ -404,6 +404,8 @@ Each instruction adds a new layer to the image and then commits the image. Docke
 
 Here we’ve specified a command for the container to run: `nginx -g "daemon off;"`. This will launch Nginx in the foreground to run our web server.
 
+<img alt="MySql Image" src="https://raw.githubusercontent.com/nazmulb/docker/master/images/mysql-image.png" width="450px" />
+
 *Dockerfile instructions:*
 
 - `FROM`: Sets the Base Image for subsequent instructions. Usage: `FROM <image>[:<tag>]`
